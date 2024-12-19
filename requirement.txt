@@ -1,0 +1,9 @@
+py3-base92
+base91
+base58
+base36
+pybase62
+base64
+numpy
+gmpy2
+pycryptodome
