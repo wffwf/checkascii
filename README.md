@@ -4,6 +4,7 @@
 python3 -m pip install -r requirement.txt
 ```
 ## 使用说明
+```
   -h, --help  显示帮助信息
   -f, --file  读取txt文本，不区分换行
   -t, --txt   读取输入字符串
@@ -13,13 +14,12 @@ python3 -m pip install -r requirement.txt
 
   例2：python3 checkascii.py -f ./testfile.txt
        --------------------读取指定文件并检测-------------------
+```
 ## 实例    
 ```shell
 python3 checkascii.py -t "H4sIAAAAAAAAAFvz1oG1uThBNzk/V68otbgON7UYg87NTOnNOQsC85zzS/NKgt9/nfvHul6ZiYHRi4G1LDGnNLWigAECGAGGalhyUgAAAA=="
-python3 checkascii.py -f 123.txt
-python3 checkascii.py -f analyse_target
-python3 checkascii.py -f encrypted.txt
+
 python3 checkascii.py -f shanghai.txt
+
 python3 checkascii.py -f vigenere.txt
-python3 checkascii.py -f xiaoshuo_en.txt
 ```
