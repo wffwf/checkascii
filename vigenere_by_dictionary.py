@@ -114,7 +114,10 @@ def vigenere_by_dictionary(c):
         dictionary = [w for w in dictionary if not w.startswith('#') and not w == '']
     # solve
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    for i in range(10):
+    ROUND = 10
+    if len(c) > 1000:
+        ROUND = 1
+    for i in range(ROUND):
         try:
             mapping,cword = solve(ciphertext, alphabet, dictionary)
         except:
