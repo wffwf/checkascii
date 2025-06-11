@@ -24,6 +24,7 @@ from vigenere_by_dictionary import *
 def checktxt(input_str):
     # 常见编解码
     checkbasexx(input_str) 
+    fixbasexx(input_str)
     checkfreqbypandas(input_str) 
     yunying_01248_decode(input_str)  
     Manchester_decode(input_str) 
