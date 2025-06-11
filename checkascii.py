@@ -39,7 +39,7 @@ def checktxt(input_str):
     # 基于已知明文的爆破
     print("-"*20+color_string("[以下开始基于已知明文的爆破分析]",BLUE)+"-"*20)   
     # 提示请输入已知明文,RED and YELLOW
-    mingwen = input("请输入"+color_string("已知明文",GREEN)+"一般是连续的前若干个字符，比如"+color_string("flag/synt",GREEN)+".\n特殊输入：1. BURP_ALL_AFFINE ==> 强制仿射暴力输出\n直接回车可退出爆破,请输入：")
+    mingwen = input("请输入"+color_string("已知明文",GREEN)+"一般是连续的前若干个字符，比如"+color_string("flag/synt",GREEN)+".\n特殊情况：输入 BURP_ALL_AFFINE ==> 强制仿射暴力输出\n直接回车可退出爆破,请输入：")
     if len(mingwen) > 0:
         flag = mingwen.lower()
         print("-"*20+color_string("[输入的已知明文是: ",YELLOW)+color_string(flag,RED)+"-"*20)   
