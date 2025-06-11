@@ -165,7 +165,7 @@ def checkbasexx(input_str):
 def fixbasexx(input_str):
     input_strLen = len(input_str)
     if input_strLen > 1000:
-            print(color_string("字符较长，fix base不支持",PURPLE))
+            print("-"*20+color_string("字符较长，fix base不支持",PURPLE)+"-"*20)
     else:    
         print("-"*20+color_string("[Base不全家桶fix&check]",PURPLE)+"-"*20)   
         FIXBYTES = input_strLen - 8
