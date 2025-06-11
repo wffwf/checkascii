@@ -161,6 +161,38 @@ def checkbasexx(input_str):
     tryBase85(input_str)
     tryBase91(input_str)
     tryBase92(input_str)
+
+def fixbasexx(input_str):
+    input_strLen = len(input_str)
+    print("-"*20+color_string("[Base不全家桶fix&check]",PURPLE)+"-"*20)   
+    FIXBYTES = 2
+    FIXINFOSTRING = "[本次fix输入的前后"+str(FIXBYTES)+"个字符]"
+    print("-"*20+color_string(FIXINFOSTRING,PURPLE)+"-"*20)       
+    print("the input_str string  [length] is %d"%input_strLen)
+    if input_strLen > 1000:
+            print(color_string("字符较长，base解码可能有延迟，按CTRL+C可取消",PURPLE))
+    print("the characters in [input_strs] string is %s"%sort_asc(input_str))    
+    for i in range(1,1+FIXBYTES):
+        tryBase16(input_str[:(-i)])
+        tryBase16(input_str[i:])
+        tryBase32(input_str[:(-i)])
+        tryBase32(input_str[i:])
+        tryBase36(input_str[i:])
+        tryBase36(input_str[:(-i)])
+        tryBase45(input_str[:(-i)])
+        tryBase45(input_str[i:])
+        tryBase58(input_str[:(-i)])
+        tryBase58(input_str[i:])
+        tryBase62(input_str[:(-i)])
+        tryBase62(input_str[i:])
+        tryBase64(input_str[:(-i)])
+        tryBase64(input_str[i:])
+        tryBase85(input_str[:(-i)])
+        tryBase85(input_str[i:])
+        tryBase91(input_str[:(-i)])
+        tryBase91(input_str[i:])
+        tryBase92(input_str[i:])        
+        tryBase92(input_str[:(-i)])   
 def main():
     a16 = "756E6374667B64383537303366396630363734343162313632613363663337363635346662627D"
     checkbasexx(a16)
@@ -185,7 +217,9 @@ def main():
     a85_b = open('base85-b.txt','r').read()
     checkbasexx(a85_b)
     a85_c = open('base85-z.txt','r').read()
-    checkbasexx(a85_c)        
+    checkbasexx(a85_c)   
+    fix = "MZWGCZ33MZUW4ZC7OJSWC3C7O5QXSX3UNBQW4X3ZN52V6Y3BNZPXO2LOPU======="
+    fixbasexx(fix)
 
 if __name__ == "__main__":
     main()
