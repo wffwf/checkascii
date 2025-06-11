@@ -165,7 +165,7 @@ def checkbasexx(input_str):
 def fixbasexx(input_str):
     input_strLen = len(input_str)
     print("-"*20+color_string("[Base不全家桶fix&check]",PURPLE)+"-"*20)   
-    FIXBYTES = 2
+    FIXBYTES = input_strLen - 8
     FIXINFOSTRING = "[本次fix输入的前后"+str(FIXBYTES)+"个字符]"
     print("-"*20+color_string(FIXINFOSTRING,PURPLE)+"-"*20)       
     print("the input_str string  [length] is %d"%input_strLen)
