@@ -3,7 +3,8 @@ base91
 base58
 base36
 pybase62
-base64
+base45
 numpy
 gmpy2
 pycryptodome
+pandas
