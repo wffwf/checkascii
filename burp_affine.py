@@ -47,10 +47,10 @@ def brute_force(ciphertext,flag):
             plaintext = affine_decrypt_A(ciphertext, a, b)
             if FLAG == BURP_ALL_AFFINE:
                 print(f"Using key: a={a}, b={b} -> ",end='')
-                print(color_string(plaintext,GREEN))
+                print(color_string(plaintext.lower(),GREEN))
             elif FLAG in plaintext:
                 print(f"Using key: a={a}, b={b} -> ",end='')
-                print(color_string(plaintext,GREEN))
+                print(color_string(plaintext.lower(),GREEN))
 
 def burp_affine(c,flag):
     print("-"*20+color_string("[仿射密码affine爆破:c = [i*p + j]%26. i,j,均未知需要爆破]",PURPLE)+"-"*20)   
