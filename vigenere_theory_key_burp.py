@@ -69,20 +69,7 @@ class classic_vigenere_expand:
         
         return key
 
-def vigenere_theory_key_burp(c,m):
-    print("-"*20+color_string("[结合一段已知的明文和密文,爆破vigenere密钥]",PURPLE)+"-"*20) 
-    if len(c) != len(m):
-        print("-"*20+color_string("输入明文密文长度不一致，退出原理破解，仍需破解，请修改代码",YELLOW)+"-"*20) 
-    else:
-        v = classic_vigenere_expand()
-        ALPHABET = ''.join([chr(i) for i in range(0x20, 0x7F)])
-        dic = input("请输入"+color_string("已知字典",GREEN)+",直接回车则使用默认字典"+color_string(ALPHABET,GREEN)+",请输入：")
-        if len(dic) > 0 :
-            v.set_dictionary(dic)
-        key = v.crack_key(m, c)
-        print(color_string("密钥破解结果: ",YELLOW) + key)
-
-if __name__ == "__main__":
+def classic_vigenere_expand_test(c,m):
     m = "Hello,good morning!How are you?" # 2024年省网信安竞赛题
     c = "u_LcYsM^UWeM[XhIX[`<Q^eb@__pY]%"
     v = classic_vigenere_expand()
@@ -93,3 +80,75 @@ if __name__ == "__main__":
     ENC = [0x34,0x66,0x41,0x5e,0x65,0x5e,0x76,0x56,0x78,0x61,0x78,0x52,0x7e,0x45,0x2b,0x53,0x49,0x34,0x3f,0x5b,0x54,0x79,0x26,0x75,0x2d,0x5d,0x52,0x70,0x5a,0x5c,0x75,0x4e,0x78,0x27,0x4d,0x44,0x52,0x77,0x2d,0x52,0x7d,0x6b,0x45,0x71]
     encenc = ''.join(chr(i) for i in ENC)
     print(v.vigenere_dec(encenc,key))
+
+def another_theory_key_burp(c,m): # 现场写的另外一种原理破解，与可见字符版的有区别，对于字典格式要求更低
+    def myprint(a,idx): # idx为行标，构造第idx行的结构
+        res = []
+        for i in range(idx,len(a)):
+            res.append(a[i])
+        for j in range(idx):
+            res.append(a[j])
+        return(res)
+
+    juzheng=[] # 维吉尼亚多字母映射表结构
+    def output(a):
+        length = len(a)
+        for i in range(length):
+            juzheng.append(myprint(a,i)) # 生成多字母映射表
+
+    ALPHABET = ''.join([chr(i) for i in range(0x20, 0x7F)])  # 2024年省网信安竞赛题字典
+
+    print("-"*20+color_string("[结合一段已知的明文和密文,爆破vigenere密钥]",PURPLE)+"-"*20) 
+    if len(c) != len(m):
+        print("-"*20+color_string("输入明文密文长度不一致，退出原理破解，仍需破解，请修改代码",YELLOW)+"-"*20) 
+    else:
+        dic = input("请输入"+color_string("已知字典",GREEN)+",直接回车则使用默认字典"+color_string(ALPHABET,GREEN)+",请输入：")
+        if len(dic) > 0 :
+            ALPHABET = list(dic)
+
+        output(ALPHABET)
+        key = ''
+        for i in range(len(m)): # 原理破解
+            a = juzheng[0].index(m[i])
+            for j in range(len(juzheng)):
+                if juzheng[j][a] == c[i]:
+                    key += juzheng[0][j]
+        print(color_string("密钥破解结果: ",YELLOW) + key)
+
+def test_another_theory_key_burp(c,m):
+    def myprint(a,idx): # idx为行标，构造第idx行的结构
+        res = []
+        for i in range(idx,len(a)):
+            res.append(a[i])
+        for j in range(idx):
+            res.append(a[j])
+        return(res)
+
+    juzheng=[] # 维吉尼亚多字母映射表结构
+    def output(a):
+        length = len(a)
+        for i in range(length):
+            juzheng.append(myprint(a,i)) # 生成多字母映射表
+
+    ALPHABET = ''.join([chr(i) for i in range(0x20, 0x7F)])  # 2024年省网信安竞赛题字典
+
+    print("-"*20+color_string("[结合一段已知的明文和密文,爆破vigenere密钥]",PURPLE)+"-"*20) 
+    if len(c) != len(m):
+        print("-"*20+color_string("输入明文密文长度不一致，退出原理破解，仍需破解，请修改代码",YELLOW)+"-"*20) 
+    else:
+        output(ALPHABET)
+        key = ''
+        for i in range(len(m)): # 原理破解
+            a = juzheng[0].index(m[i])
+            for j in range(len(juzheng)):
+                if juzheng[j][a] == c[i]:
+                    key += juzheng[0][j]
+        print(color_string("密钥破解结果: ",YELLOW) + key)    
+        
+def vigenere_theory_key_burp(c,m):
+    another_theory_key_burp(c,m)
+
+if __name__ == "__main__":
+    m = "Hello,good morning!How are you?" # 2024年省网信安竞赛题
+    c = "u_LcYsM^UWeM[XhIX[`<Q^eb@__pY]%"
+    test_another_theory_key_burp(c,m)
